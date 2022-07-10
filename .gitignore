@@ -6,6 +6,7 @@ CMakeCache.txt
 cmake_install.cmake
 *vcxproj*
 *.proj*
+*.sln
 CMakeFiles
 Makefile
 .vscode

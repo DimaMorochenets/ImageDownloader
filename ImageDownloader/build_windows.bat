@@ -15,6 +15,6 @@ if exist %build_path% (
 
 cmake --build %build_path%
 
-echo "Run application: (y/n)?"
+echo Run application: (y/n)?
 set /p answer=""
 if "%answer%" == "y" ("%build_path%\Debug\ImageDownloader.exe")
