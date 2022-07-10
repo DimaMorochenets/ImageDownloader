@@ -9,8 +9,7 @@
     #include <cstring>
     #include <cerrno>
     typedef int ERROR_N;
-#endif
-#ifdef _WIN32
+#elif _WIN32
     #include <Windows.h>
     typedef DWORD ERROR_N; 
 #endif
