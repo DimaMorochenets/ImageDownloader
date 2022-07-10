@@ -1,8 +1,11 @@
 build
-build_cmake.bat
-build_cmake_all.bat
-DLL
 Downloads
 Class.md
 GUI prototype.png
+CMakeCache.txt
+cmake_install.cmake
+*vcxproj*
+*.proj*
+CMakeFiles
+Makefile
 .vscode
