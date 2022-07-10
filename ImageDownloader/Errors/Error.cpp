@@ -26,7 +26,13 @@ std::string ErrorHandler::logFilePath()
 {
     auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     tm curTime; 
-    localtime_r(&now, &curTime);
+
+    #ifdef __linux__
+        localtime_r(&now, &curTime);
+    #elif _WIN32
+        _localtime64_s(&curTime, &now);
+    #endif
+
     std::stringstream stream;
     stream << std::put_time(&curTime, "%Y-%m-%d");
 
