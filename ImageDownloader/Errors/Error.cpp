@@ -7,6 +7,7 @@
 #include <sstream>
 #include <fstream>
 #include <filesystem>
+#include <algorithm>
 
 ErrorHandler::ErrorHandler(){
     logFile = logFilePath();
@@ -24,8 +25,14 @@ ErrorHandler::ErrorHandler(std::string msg, ERROR_N curError)
 std::string ErrorHandler::logFilePath()
 {
     auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
-    tm curTime;
-    _localtime64_s(&curTime, &now);
+    tm curTime; 
+
+    #ifdef __linux__
+        localtime_r(&now, &curTime);
+    #elif _WIN32
+        _localtime64_s(&curTime, &now);
+    #endif
+
     std::stringstream stream;
     stream << std::put_time(&curTime, "%Y-%m-%d");
 
@@ -46,7 +53,7 @@ void ErrorHandler::Description(std::string msg, ERROR_N curError)
 {
     char desc[256] = "";
     #ifdef __linux__
-        desc = strerror(errorNum);;
+        strcpy(desc, strerror(errorNum));
     #else
         FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS,
             NULL, curError, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)desc, 256, NULL);
