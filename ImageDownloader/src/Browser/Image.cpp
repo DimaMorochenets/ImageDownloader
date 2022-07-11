@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "src/Browser/Image.h"
 
 Image::Image(QWidget* parent):QLabel(parent), mark(false){}
 Image::Image(const QString& text, QWidget* parent):QLabel(parent), mark(false) {setText(text);}

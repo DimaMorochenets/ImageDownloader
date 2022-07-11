@@ -14,11 +14,11 @@ else
     cmake -B ${build_path}
 fi
 
-cmake --build ${build_path}
+cmake --build ${build_path} || exit 1
 
-echo "Run application: (y/n)?"
-read answer
-if [ "${answer}" = "y" ]
-then
+#echo "Run application: (y/n)?"
+#read answer
+#if [ "${answer}" = "y" ]
+#then
     "${build_path}/ImageDownloader"
-fi
+#fi

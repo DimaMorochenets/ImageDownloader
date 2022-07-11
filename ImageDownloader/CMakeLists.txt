@@ -19,51 +19,54 @@ endif()
 
 set(CMAKE_MAP_IMPORTED_CONFIG_DEBUG RELEASE)
 
+set(qml_qrc ${CMAKE_CURRENT_SOURCE_DIR}/data/qml.qrc)
+
 add_library(mainlib
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Request/Request.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Request/Request.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Errors/Error.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Errors/Error.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Browser.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Browser.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Image.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Image.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/TCPSocket/TCPSocket.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/TCPSocket/TCPSocket.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Downloader/Downloader.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/Downloader/Downloader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Errors/Error.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Errors/Error.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/TCPSocket/TCPSocket.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/TCPSocket/TCPSocket.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Request/Request.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Request/Request.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Browser.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Browser.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Image.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Image.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Downloader/Downloader.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/Downloader/Downloader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )
 
 target_sources(mainlib
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/Errors/Error.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/Request/Request.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Browser.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Image.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/TCPSocket/TCPSocket.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/Downloader/Downloader.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Errors/Error.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/TCPSocket/TCPSocket.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Request/Request.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Browser.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Image.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Downloader/Downloader.cpp
     PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/Errors/Error.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/Request/Request.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Browser.h 
-        ${CMAKE_CURRENT_SOURCE_DIR}/Browser/Image.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/TCPSocket/TCPSocket.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/Downloader/Downloader.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Errors/Error.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/TCPSocket/TCPSocket.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Request/Request.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Browser.h 
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Browser/Image.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Downloader/Downloader.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 )   
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Widgets Gui Network REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Widgets Gui Network REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Widgets Qml Gui Network REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Widgets Qml Gui Network REQUIRED)
 
 add_definitions(-DQT_NO_KEYWORDS)
 
-add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp)
+add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp ${qml_qrc})
 
 target_link_libraries(mainlib
                         PUBLIC
                         Qt${QT_VERSION_MAJOR}::Core 
                         Qt${QT_VERSION_MAJOR}::Quick 
                         Qt${QT_VERSION_MAJOR}::Widgets
+                        Qt${QT_VERSION_MAJOR}::Qml
                         Qt${QT_VERSION_MAJOR}::Gui
                         Qt${QT_VERSION_MAJOR}::Network
 )
@@ -75,12 +78,14 @@ if(WIN32)
         get_target_property(COREDLL     Qt${QT_VERSION_MAJOR}::Core         IMPORTED_LOCATION_DEBUG)
         get_target_property(QUICKDLL    Qt${QT_VERSION_MAJOR}::Quick        IMPORTED_LOCATION_DEBUG)
         get_target_property(WIDGETDLL   Qt${QT_VERSION_MAJOR}::Widgets      IMPORTED_LOCATION_DEBUG)
+        get_target_property(QMLDLL      Qt${QT_VERSION_MAJOR}:Qml           IMPORTED_LOCATION_DEBUG)
         get_target_property(GUIDLL      Qt${QT_VERSION_MAJOR}::Gui          IMPORTED_LOCATION_DEBUG)
         get_target_property(NETWORKDLL  Qt${QT_VERSION_MAJOR}::Network      IMPORTED_LOCATION_DEBUG)
     else(CMAKE_BUILD_TYPE MATCHES Release)
         get_target_property(COREDLL     Qt${QT_VERSION_MAJOR}::Core         IMPORTED_LOCATION_RELEASE)
         get_target_property(QUICKDLL    Qt${QT_VERSION_MAJOR}::Quick        IMPORTED_LOCATION_RELEASE)
         get_target_property(WIDGETDLL   Qt${QT_VERSION_MAJOR}::Widgets      IMPORTED_LOCATION_RELEASE)
+        get_target_property(QMLDLL      Qt${QT_VERSION_MAJOR}:Qml           IMPORTED_LOCATION_RELEASE)
         get_target_property(GUIDLL      Qt${QT_VERSION_MAJOR}::Gui          IMPORTED_LOCATION_RELEASE)
         get_target_property(NETWORKDLL  Qt${QT_VERSION_MAJOR}::Network      IMPORTED_LOCATION_RELEASE)
     endif()

@@ -1,7 +1,7 @@
 #ifndef DOWNLOADER_H
 #define DOWNLOADER_H
 
-#include "TCPSocket/TCPSocket.h"
+#include "src/TCPSocket/TCPSocket.h"
 
 #include <vector>
 #include <string>

@@ -1,5 +1,5 @@
-#include "Browser/Browser.h"
-#include "Downloader/Downloader.h"
+#include "src/Browser/Browser.h"
+#include "src/Downloader/Downloader.h"
 
 Browser::Browser(QWidget* parent):QMainWindow(parent)
 {

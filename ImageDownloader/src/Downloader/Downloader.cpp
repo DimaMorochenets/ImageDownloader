@@ -1,4 +1,4 @@
-#include "Downloader.h"
+#include "src/Downloader/Downloader.h"
 
 #include <fstream>
 
@@ -55,7 +55,7 @@ bool Downloader::Download(std::string link){
     if(answer.empty())
         return false;
 
-    printf("%d\n\n", answer.size());
+    printf("%ld\n\n", answer.size());
 
     /*std::ofstream file((downloadDir + urlInfo.fileName).c_str(), std::ios::out | std::ios::binary);
     file.write(answer.c_str(), answer.size());

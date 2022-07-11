@@ -22,8 +22,8 @@
 #include <set>
 #include <algorithm>
 
-#include "Request/Request.h"
-#include "Browser/Image.h"
+#include "src/Request/Request.h"
+#include "Image.h"
 
 class Browser:public QMainWindow{
     public:
