@@ -1,6 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
+        <file>qml/Components/RoundButton.qml</file>
+        <file>qml/Components/Wallpaper.qml</file>
         <file>Images/logo.ico</file>
+        <file>Images/Wallpapers/settings.jpg</file>
     </qresource>
 </RCC>

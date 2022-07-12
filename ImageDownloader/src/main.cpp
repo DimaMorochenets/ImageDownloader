@@ -17,7 +17,7 @@ int main(int argc, char** argv)
     app.setWindowIcon(QIcon(":Images/logo.ico"));
 
     QQmlApplicationEngine engine;
-    const QUrl url(QStringLiteral("qrc:qml/main.qml"));
+    const QUrl url(QStringLiteral("qrc:///qml/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
                         if(!obj && url == objUrl) QCoreApplication::exit(-1);

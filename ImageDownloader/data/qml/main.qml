@@ -1,7 +1,10 @@
-import QtQuick 2.10
 import QtQml 2.0
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
+import QtMultimedia 5.12
+
+import "Components"
 
 ApplicationWindow {
     id: window
@@ -12,4 +15,10 @@ ApplicationWindow {
     visible: true
 
     title: "Image Downloader"
+
+    Wallpaper {
+        id: wallpaper
+
+        anchors.fill: parent
+    }
 }

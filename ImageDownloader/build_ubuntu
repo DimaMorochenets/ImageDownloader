@@ -14,7 +14,7 @@ else
     cmake -B ${build_path}
 fi
 
-cmake --build ${build_path} || exit 1
+cmake --build ${build_path} -j$(nproc) || exit 1
 
 #echo "Run application: (y/n)?"
 #read answer
