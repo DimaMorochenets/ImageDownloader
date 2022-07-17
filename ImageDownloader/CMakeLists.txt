@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(ImageDownloader LANGUAGES CXX)
 
 if(WIN32)
-    set(CMAKE_PREFIX_PATH C:\\Qt\\6.2.1\\msvc2019_64)
+    set(CMAKE_PREFIX_PATH C:/Qt/6.3.1/msvc2019_64)
 elseif(!WIN32)
     set(CMAKE_PREFIX_PATH ~/Qt6.3.1/6.3.1/gcc_64)
 endif()
@@ -17,6 +17,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 
+set(CMAKE_BUILD_TYPE RELEASE)
 set(CMAKE_MAP_IMPORTED_CONFIG_DEBUG RELEASE)
 
 set(HEADER_FILES
@@ -91,10 +92,10 @@ if(WIN32)
         get_target_property(NETWORKDLL  Qt${QT_VERSION_MAJOR}::Network      IMPORTED_LOCATION_RELEASE)
         get_target_property(MULTIMEDIA  Qt${QT_VERSION_MAJOR}::Multimedia   IMPORTED_LOCATION_RELEASE)
     endif()
-    add_custom_command(
-        TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy ${WIDGETDLL} ${COREDLL} ${QUICKDLL} ${GUIDLL} ${NETWORKDLL} ${QMLDLL} ${MULTIMEDIADLL} $<TARGET_FILE_DIR:${PROJECT_NAME}>
-    )
+    #add_custom_command(
+    #    TARGET ${PROJECT_NAME} POST_BUILD
+        #COMMAND ${CMAKE_COMMAND} -E copy ${WIDGETDLL} ${COREDLL} ${QUICKDLL} ${GUIDLL} ${NETWORKDLL} ${QMLDLL} ${MULTIMEDIADLL} $<TARGET_FILE_DIR:${PROJECT_NAME}>
+    #)
     add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins
