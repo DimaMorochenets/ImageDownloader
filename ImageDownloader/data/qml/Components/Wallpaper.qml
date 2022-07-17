@@ -5,7 +5,7 @@ import QtQuick.Layouts 1.12
 import QtMultimedia 5.12
 
 Item {
-    id: root
+    id: _root
 
     Image {
         anchors.fill: parent

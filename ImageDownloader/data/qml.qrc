@@ -1,9 +1,15 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
-        <file>qml/Components/RoundButton.qml</file>
+        <file>qml/Components/ControlButton.qml</file>
         <file>qml/Components/Wallpaper.qml</file>
         <file>Images/logo.ico</file>
+        <file>Images/Icons/home.png</file>
+        <file>Images/Icons/search.png</file>
+        <file>Images/Icons/settings.png</file>
+        <file>Images/Icons/history.png</file>
+        <file>Images/Icons/info.png</file>
+        <file>Images/Icons/exit.png</file>
         <file>Images/Wallpapers/settings.jpg</file>
     </qresource>
 </RCC>

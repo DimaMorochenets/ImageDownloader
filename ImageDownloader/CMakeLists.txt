@@ -17,7 +17,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS OFF)
 
-set(CMAKE_BUILD_TYPE RELEASE)
 set(CMAKE_MAP_IMPORTED_CONFIG_DEBUG RELEASE)
 
 set(HEADER_FILES
@@ -73,32 +72,3 @@ target_link_libraries(mainlib
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC mainlib)
-
-if(WIN32)
-    if(CMAKE_BUILD_TYPE MATCHES Debug)
-        get_target_property(COREDLL     Qt${QT_VERSION_MAJOR}::Core         IMPORTED_LOCATION_DEBUG)
-        get_target_property(QUICKDLL    Qt${QT_VERSION_MAJOR}::Quick        IMPORTED_LOCATION_DEBUG)
-        get_target_property(WIDGETDLL   Qt${QT_VERSION_MAJOR}::Widgets      IMPORTED_LOCATION_DEBUG)
-        get_target_property(QMLDLL      Qt${QT_VERSION_MAJOR}::Qml           IMPORTED_LOCATION_DEBUG)
-        get_target_property(GUIDLL      Qt${QT_VERSION_MAJOR}::Gui          IMPORTED_LOCATION_DEBUG)
-        get_target_property(NETWORKDLL  Qt${QT_VERSION_MAJOR}::Network      IMPORTED_LOCATION_DEBUG)
-        get_target_property(MULTIMEDIA  Qt${QT_VERSION_MAJOR}::Multimedia   IMPORTED_LOCATION_DEBUG)
-    elseif(CMAKE_BUILD_TYPE MATCHES Release)
-        get_target_property(COREDLL     Qt${QT_VERSION_MAJOR}::Core         IMPORTED_LOCATION_RELEASE)
-        get_target_property(QUICKDLL    Qt${QT_VERSION_MAJOR}::Quick        IMPORTED_LOCATION_RELEASE)
-        get_target_property(WIDGETDLL   Qt${QT_VERSION_MAJOR}::Widgets      IMPORTED_LOCATION_RELEASE)
-        get_target_property(QMLDLL      Qt${QT_VERSION_MAJOR}::Qml           IMPORTED_LOCATION_RELEASE)
-        get_target_property(GUIDLL      Qt${QT_VERSION_MAJOR}::Gui          IMPORTED_LOCATION_RELEASE)
-        get_target_property(NETWORKDLL  Qt${QT_VERSION_MAJOR}::Network      IMPORTED_LOCATION_RELEASE)
-        get_target_property(MULTIMEDIA  Qt${QT_VERSION_MAJOR}::Multimedia   IMPORTED_LOCATION_RELEASE)
-    endif()
-    #add_custom_command(
-    #    TARGET ${PROJECT_NAME} POST_BUILD
-        #COMMAND ${CMAKE_COMMAND} -E copy ${WIDGETDLL} ${COREDLL} ${QUICKDLL} ${GUIDLL} ${NETWORKDLL} ${QMLDLL} ${MULTIMEDIADLL} $<TARGET_FILE_DIR:${PROJECT_NAME}>
-    #)
-    add_custom_command(
-        TARGET ${PROJECT_NAME} POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins
-        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_PREFIX_PATH}/plugins $<TARGET_FILE_DIR:${PROJECT_NAME}>/plugins
-    )
-endif(WIN32)
