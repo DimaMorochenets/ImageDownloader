@@ -10,7 +10,7 @@ Item {
     property color howeredColor: "#7C7877"
 
     property int defaultWidth: 60
-    property int howeredWidth: 180
+    property int howeredWidth: 170
 
     property alias icon: _icon.source
     property alias lable: _text.text
@@ -40,8 +40,7 @@ Item {
 
             anchors.right: parent.right
             anchors.rightMargin: defaultWidth / 4
-            anchors.top: parent.top
-            anchors.topMargin: defaultWidth / 4
+            anchors.verticalCenter: _background.verticalCenter
 
             width: 30
             height: 30
@@ -62,8 +61,6 @@ Item {
             font.pixelSize: 25
             text: "Home"
             clip: true
-
-            visible: _mouseArea.containsMouse
         }
 
         PropertyAnimation {
