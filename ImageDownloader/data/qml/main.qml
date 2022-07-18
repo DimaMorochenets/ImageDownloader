@@ -25,8 +25,8 @@ ApplicationWindow {
     ColumnLayout {
         id: _buttons
 
-        anchors.top: parent.top + 200
-        anchors.left: parent.left + 200
+        Layout.topMargin: 100
+        Layout.leftMargin: 100
 
         spacing: 25
 
@@ -34,30 +34,35 @@ ApplicationWindow {
             id: _homeButton
 
             icon: "qrc:/Images/Icons/home.png"
+            lable: "Home"
         }
 
         ControlButton {
             id: _historyButton
 
             icon: "qrc:/Images/Icons/history.png"
+            lable: "History"
         }
 
         ControlButton {
             id: _settingsButton
 
             icon: "qrc:/Images/Icons/settings.png"
+            lable: "Settings"
         }
 
         ControlButton {
             id: _infoButton
 
             icon: "qrc:/Images/Icons/info.png"
+            lable: "Info"
         }
 
         ControlButton {
             id: _exitButton
 
             icon: "qrc:/Images/Icons/exit.png"
+            lable: "Exit"
         }
     }
 }
