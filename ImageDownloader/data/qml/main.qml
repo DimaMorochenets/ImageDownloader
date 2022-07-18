@@ -22,47 +22,14 @@ ApplicationWindow {
         anchors.fill: parent
     }
 
-    ColumnLayout {
-        id: _buttons
+    MainMenu {
+        id: _mainMenu
 
-        Layout.topMargin: 100
-        Layout.leftMargin: 100
+        anchors.top: parent.top
+        anchors.topMargin: 25
+        anchors.left: parent.left
+        anchors.leftMargin: 25
 
-        spacing: 25
-
-        ControlButton {
-            id: _homeButton
-
-            icon: "qrc:/Images/Icons/home.png"
-            lable: "Home"
-        }
-
-        ControlButton {
-            id: _historyButton
-
-            icon: "qrc:/Images/Icons/history.png"
-            lable: "History"
-        }
-
-        ControlButton {
-            id: _settingsButton
-
-            icon: "qrc:/Images/Icons/settings.png"
-            lable: "Settings"
-        }
-
-        ControlButton {
-            id: _infoButton
-
-            icon: "qrc:/Images/Icons/info.png"
-            lable: "Info"
-        }
-
-        ControlButton {
-            id: _exitButton
-
-            icon: "qrc:/Images/Icons/exit.png"
-            lable: "Exit"
-        }
+        onPageChanged: _wallpaper.image = _mainMenu.currentWallpaper
     }
 }

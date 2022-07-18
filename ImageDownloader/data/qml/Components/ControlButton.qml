@@ -14,6 +14,9 @@ Item {
 
     property alias icon: _icon.source
     property alias lable: _text.text
+    property string wallpaperSource: "qrc:/Images/Wallpapers/home.jpg"
+
+    signal buttonClicked
 
     width: howeredWidth
     height: 60
@@ -28,15 +31,15 @@ Item {
         height: parent.height
         radius: parent.height / 2
 
-        color: defaultColor
+        color: _mouseArea.containsMouse ? howeredColor : defaultColor
 
         Image {
             id: _icon
 
             fillMode: Image.PreserveAspectCrop
 
-            anchors.left: parent.left
-            anchors.leftMargin: defaultWidth / 4
+            anchors.right: parent.right
+            anchors.rightMargin: defaultWidth / 4
             anchors.top: parent.top
             anchors.topMargin: defaultWidth / 4
 
@@ -49,14 +52,16 @@ Item {
         Text {
             id: _text
 
-            anchors.left: _icon.right
-            anchors.leftMargin: _icon.width / 2
-            anchors.verticalCenter: _icon.verticalCenter
+            anchors.left: _background.left
+            anchors.leftMargin: defaultWidth / 4
+            anchors.verticalCenter: _background.verticalCenter
+
+            width: _background.width - defaultWidth
 
             color: "white"
             font.pixelSize: 25
             text: "Home"
-            wrapMode: Text.WordWrap
+            clip: true
 
             visible: _mouseArea.containsMouse
         }
@@ -86,7 +91,6 @@ Item {
             _widthAnimation.running = true
         }
 
-        onEntered: _background.color = howeredColor
-        onExited: _background.color = defaultColor
+        onClicked: _root.buttonClicked()
     }
 }

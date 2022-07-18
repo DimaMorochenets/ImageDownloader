@@ -3,6 +3,7 @@
         <file>qml/main.qml</file>
         <file>qml/Components/ControlButton.qml</file>
         <file>qml/Components/Wallpaper.qml</file>
+        <file>qml/Components/MainMenu.qml</file>
         <file>Images/logo.ico</file>
         <file>Images/Icons/home.png</file>
         <file>Images/Icons/search.png</file>
@@ -10,6 +11,9 @@
         <file>Images/Icons/history.png</file>
         <file>Images/Icons/info.png</file>
         <file>Images/Icons/exit.png</file>
+        <file>Images/Wallpapers/home.jpg</file>
+        <file>Images/Wallpapers/history.jpg</file>
         <file>Images/Wallpapers/settings.jpg</file>
+        <file>Images/Wallpapers/info.jpg</file>
     </qresource>
 </RCC>
