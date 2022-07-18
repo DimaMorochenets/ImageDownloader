@@ -2,7 +2,7 @@ import QtQml 2.0
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtMultimedia 5.12
+import QtGraphicalEffects 1.12
 
 import "Components"
 
@@ -30,6 +30,18 @@ ApplicationWindow {
         anchors.left: parent.left
         anchors.leftMargin: 25
 
-        onPageChanged: _wallpaper.image = _mainMenu.currentWallpaper
+        onPageChanged: _opacityAnimation.running = true
+
+        PropertyAnimation {
+            id: _opacityAnimation
+
+            target: _wallpaper
+            property: "backgroundOpacity"
+            to: _wallpaper.fadeInOpacity
+            duration: 750
+            easing.type: Easing.InOutQuint
+
+            onFinished: _wallpaper.image = _mainMenu.currentWallpaper
+        }
     }
 }
